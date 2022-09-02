@@ -4,6 +4,8 @@
  */
 public class DigiURL {
 
-    private final String ORIGIN = "https://tie.digitraffic.fi/api/maintenance/v1/tracking/";
+    private final String MAINTENANCE = "https://tie.digitraffic.fi/api/maintenance/v1/tracking/";
+    private final String CONDITIONS = "https://tie.digitraffic.fi/api/v3/data/road-conditions/";
+    private final String MESSAGES = "https://tie.digitraffic.fi/api/traffic-message/v1/";
 
 }
