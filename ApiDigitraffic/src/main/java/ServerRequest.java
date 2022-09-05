@@ -40,6 +40,7 @@ public class ServerRequest {
         // Connect to url and get input stream
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept-Encoding", "gzip");
         InputStreamReader stream = new InputStreamReader(conn.getInputStream());
 
         // Append input stream to result
