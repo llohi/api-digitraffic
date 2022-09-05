@@ -2,6 +2,10 @@ public class Task {
 
     private String id, nameFi, nameEn, nameSv;
 
+    Task() {
+
+    }
+
     public String getId() {
         return id;
     }
