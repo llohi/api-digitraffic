@@ -1,12 +1,20 @@
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpRequest;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Class used to connect to an API with a web address
@@ -37,17 +45,22 @@ public class ServerRequest {
 
         StringBuilder result = new StringBuilder();
 
-        // Connect to url and get input stream
+        // Configure url connection
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept-Encoding", "gzip");
-        InputStreamReader stream = new InputStreamReader(conn.getInputStream());
 
-        // Append input stream to result
-        try (BufferedReader reader = new BufferedReader(stream)) {
-            for (String line; (line = reader.readLine()) != null; ) result.append(line);
-        }
+        // Get gzip stream
+        InputStream stream = conn.getInputStream();
+        InputStream bodyStream = new GZIPInputStream(stream);
 
-        return result.toString();
+        // Decompress gzip to byte array
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int length;
+        while ((length = bodyStream.read(buffer)) > 0)
+            outStream.write(buffer, 0, length);
+
+        return outStream.toString(StandardCharsets.UTF_8);
     }
 }
