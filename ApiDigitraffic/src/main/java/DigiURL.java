@@ -9,7 +9,8 @@ public class DigiURL {
     private final String MESSAGES = "https://tie.digitraffic.fi/api/traffic-message/v1/";
 
     static String makeURL() {
-        return "";
+        String url = "";
+        return url;
     }
 
 }
