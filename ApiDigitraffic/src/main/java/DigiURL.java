@@ -29,7 +29,7 @@ public class DigiURL {
      * @return the formatted url
      */
     static String maintenanceURL(String start_time, String end_time,
-                                 int x_min, int y_min, int x_max, int y_max,
+                                 double x_min, double y_min, double x_max, double y_max,
                                  String task_name) {
         return MAINTENANCE_ROOT +
                 "routes?endFrom="+start_time+"&endBefore"+end_time+
@@ -45,8 +45,8 @@ public class DigiURL {
      * @param y_max the maximum y coordinate
      * @return the formatted url
      */
-    static String conditionsURL(int x_min, int y_min,
-                                int x_max, int y_max) {
+    static String conditionsURL(double x_min, double y_min,
+                                double x_max, double y_max) {
         return CONDITIONS_ROOT +
                 x_min+"/"+y_min+"/"+x_max+"/"+y_max;
     }
