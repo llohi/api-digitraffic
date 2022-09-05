@@ -22,7 +22,7 @@ public class ServerRequest {
      * @param <T> The type to be returned
      * @return An object of type T with the data from the web address
      */
-    public static <T> T getObject(String url, TypeToken<T> token) throws IOException {
+    static <T> T getObject(String url, TypeToken<T> token) throws IOException {
         return new Gson().fromJson(
                 getRawData(url),
                 token.getType());
@@ -33,7 +33,7 @@ public class ServerRequest {
      * @param url The web address to the raw data
      * @return Raw data as a string
      */
-    public static String getRawData(String url) throws IOException {
+    static String getRawData(String url) throws IOException {
 
         StringBuilder result = new StringBuilder();
 
