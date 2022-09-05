@@ -8,4 +8,8 @@ public class DigiURL {
     private final String CONDITIONS = "https://tie.digitraffic.fi/api/v3/data/road-conditions/";
     private final String MESSAGES = "https://tie.digitraffic.fi/api/traffic-message/v1/";
 
+    static String makeURL() {
+        return "";
+    }
+
 }
