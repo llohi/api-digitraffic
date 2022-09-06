@@ -32,7 +32,7 @@ public class DigiURL {
                                  double x_min, double y_min, double x_max, double y_max,
                                  String task_name) {
         return MAINTENANCE_ROOT +
-                "routes?endFrom="+start_time+"&endBefore"+end_time+
+                "routes?endFrom="+start_time+"&endBefore="+end_time+
                 "&xMin="+x_min+"&yMin="+y_min+"&xMax="+x_max+"&yMax="+y_max+
                 "&taskId="+task_name+"&domain=state-roads";
     }
