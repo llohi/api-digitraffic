@@ -35,9 +35,7 @@ public class ServerRequest {
      * @return Raw data as a string
      */
     static String getRawData(String url) throws IOException {
-
-        StringBuilder result = new StringBuilder();
-
+        
         // Configure url connection
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setRequestMethod("GET");
