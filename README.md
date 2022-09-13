@@ -5,5 +5,5 @@ The Gson library is used to convert the JSON response to an equivalent Java obje
 More info on the API:<br />
 https://www.digitraffic.fi/
 <br /><br />
-More info on Gson:
+More info on Gson:<br />
 https://sites.google.com/site/gson/
