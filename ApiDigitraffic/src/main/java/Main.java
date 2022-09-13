@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        /*  TEST MAINTENANCE
+        // TEST MAINTENANCE
+        /*
         for (Maintenance m : getMaintenance("2022-01-19T09%3A00%3A00Z",
                                             "2022-01-19T14%3A00%3A00Z",
                                             21, 61, 22, 62, "")) {
@@ -21,7 +22,8 @@ public class Main {
             System.out.println();
         }*/
 
-        /*  TEST ROAD CONDITION
+        // TEST ROAD CONDITION
+        /*
         for (RoadCondition r : getRoadConditions(21, 61, 22, 62)) {
             System.out.println("time: " + r.getTime());
             System.out.println("type: " + r.getType());
@@ -29,7 +31,8 @@ public class Main {
             System.out.println();
         }*/
 
-        /*  TEST TRAFFIC MESSAGES
+        // TEST TRAFFIC MESSAGES
+        /*
         for (TrafficMessage m : getTrafficMessages("ROAD_WORK")) {
 
             System.out.println("situationId: " + m.getProperties().getSituationId());
@@ -42,12 +45,21 @@ public class Main {
 
     }
 
-
+    /**
+     * Get all road maintenance tracking tasks from the Digitraffic API.
+     * @return array of all maintenance tasks
+     */
     static ArrayList<Task> getTasks() throws IOException {
         return ServerRequest.getObject(
                 DigiURL.MAINTENANCE_ALL, new TypeToken<>(){});
     }
 
+    /**
+     * Get the road maintenance tracking tasks for a specific area
+     * that have taken place during a specific timeframe.
+     * @return array of maintenance tasks
+     * @throws IOException
+     */
     static ArrayList<Maintenance> getMaintenance(String start_time, String end_time,
                                                  double x_min, double y_min, double x_max, double y_max,
                                                  String task_name) throws IOException {
@@ -59,6 +71,10 @@ public class Main {
                 .getFeatures();
     }
 
+    /**
+     * Get the road conditions (and road condition forecasts) for a specific area
+     * @return array of road conditions
+     */
     static ArrayList<RoadCondition> getRoadConditions(double x_min, double y_min,
                                                       double x_max, double y_max) throws IOException {
         return ServerRequest.getObject(
@@ -66,6 +82,10 @@ public class Main {
                 new TypeToken<RoadConditionResponse>(){}).getRoadConditions();
     }
 
+    /**
+     * Set the latest traffic messages.
+     * @return array of traffic messages
+     */
     static ArrayList<TrafficMessage> getTrafficMessages(String situation_type) throws IOException {
 
         return ServerRequest.getObject(

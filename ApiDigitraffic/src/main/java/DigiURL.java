@@ -4,21 +4,21 @@
  */
 public class DigiURL {
 
+    static final String MAINTENANCE_ALL = "https://tie.digitraffic.fi/api/maintenance/v1/tracking/tasks";
     static final String MAINTENANCE_ROOT = "https://tie.digitraffic.fi/api/maintenance/v1/tracking/";
     static final String CONDITIONS_ROOT = "https://tie.digitraffic.fi/api/v3/data/road-conditions/";
     static final String TRAFFIC_ROOT = "https://tie.digitraffic.fi/api/traffic-message/v1/";
 
-    static final String MAINTENANCE_ALL = "https://tie.digitraffic.fi/api/maintenance/v1/tracking/tasks";
-
-
-    static String makeURL() {
-        String url = "";
-        return url;
-    }
-
     /**
      * Generate an url to get road maintenance tracking tasks
-     * for a specific area.
+     * for a specific area and time interval.
+     *
+     * Format of the url:
+     *      https://tie.digitraffic.fi/api/maintenance/v1/tracking/routes?
+     *      endFrom=<START_TIME>&endBefore=<END_TIME>
+     *      &xMin=<X_MIN>&yMin=<Y_MIN>&xMax=<X_MAX>&yMax=<Y_MAX>
+     *      &taskId=<TASK_NAME>&domain=state-roads
+     *
      * @param start_time the "minimum" starting time for the tasks
      * @param end_time the "deadline" for the tasks
      * @param x_min the minimum x coordinate
@@ -39,6 +39,10 @@ public class DigiURL {
 
     /**
      * Generate an url to get the road conditions for a specific area.
+     *
+     * Format of the url:
+     *      https://tie.digitraffic.fi/api/v3/data/road-conditions/<X_MIN>/<Y_MIN>/<X_MAX>/<Y_MAX>
+     *
      * @param x_min the minimum x coordinate
      * @param y_min the minimum y coordinate
      * @param x_max the maximum x coordinate
@@ -53,6 +57,11 @@ public class DigiURL {
 
     /**
      * Generate an url to get traffic messages according to the situation type.
+     *
+     * Format of the url:
+     *      https://tie.digitraffic.fi/api/traffic-message/v1/messages?
+     *      inactiveHours=0&includeAreaGeometry=false&situationType=<SITUATION_TYPE>
+     *
      * @param situation_type the type of the situation
      * @return the formatted url
      */

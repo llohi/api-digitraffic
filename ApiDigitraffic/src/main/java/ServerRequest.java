@@ -10,14 +10,20 @@ import java.nio.charset.StandardCharsets;
 import java.util.zip.GZIPInputStream;
 
 /**
- * Class used to connect to an API with a web address
- * and extract an object of any type.
+ * Class used to connect to an API with a web address and extract an object of any type.
  * @author J.L.
  */
 public class ServerRequest {
 
     /**
      * Use Gson to return an object of type T from a web address.
+     *
+     * Example usage (get response for road conditions):
+     *      RoadConditionResponse response =
+     *              ServerRequest.getObject(
+     *                   "this should be an accurate url",
+     *                   new TypeToken<RoadConditionResponse>(){});
+     *
      * @param url The web address to the raw data
      * @param token A TypeToken for the returned type
      * @param <T> The type to be returned
@@ -52,6 +58,7 @@ public class ServerRequest {
         while ((length = bodyStream.read(buffer)) > 0)
             outStream.write(buffer, 0, length);
 
+        // Return the content of the stream as a String
         return outStream.toString(StandardCharsets.UTF_8);
     }
 }
